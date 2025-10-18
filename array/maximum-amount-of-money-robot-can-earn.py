@@ -1,7 +1,7 @@
 class Solution:
     def maximumAmount(self, coins: List[List[int]]) -> int:
         m, n = len(coins), len(coins[0])
-        dp = [[defaultdict(int) for _ in range(n)] for _ in range(m)]
+        dp = [[defaultdict(lambda: float('-inf')) for _ in range(n)] for _ in range(m)]
 
         dp[0][0][0] = coins[0][0]
         if coins[0][0] < 0:
