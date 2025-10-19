@@ -1,5 +1,7 @@
 class Solution:
     def maxSum(self, nums: List[int]) -> int:
+        nums.sort(reverse = True)
+
         def largest(num: int) -> int:
             max_digit = 0
             while num:
@@ -8,22 +10,20 @@ class Solution:
             
             return max_digit
 
-        max_d = 0
-        max_list = []
+        digits = defaultdict(list)
 
         for num in nums:
             d = largest(num)
-            if d > max_d:
-                max_d = d
-                max_list = [-num]
-            elif d == max_d:
-                heapq.heappush(max_list, -num)
-        
-        if len(max_list) < 2:
-            return -1
+            heapq.heappush(digits[d], -num)
 
-        max_sum = 0
-        for _ in range(2):
-            max_sum += -heapq.heappop(max_list)
-
+        max_sum = -1
+        for d in digits.keys():
+            if len(digits[d]) < 2:
+                continue
+            cur_sum = 0
+            for _ in range(2):
+                cur_sum += -heapq.heappop(digits[d])
+            
+            max_sum = max(max_sum, cur_sum)
+    
         return max_sum
