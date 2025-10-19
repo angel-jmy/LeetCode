@@ -6,6 +6,6 @@ class Solution:
             seen[nums[i]] += 1
         
         for n in seen.values():
-            pairs += n * (n - 1) / 2
+            pairs += n * (n - 1) // 2
 
-        return int(pairs)
+        return pairs
