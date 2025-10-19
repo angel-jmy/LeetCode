@@ -1,6 +1,6 @@
 class Solution:
     def maxSum(self, nums: List[int]) -> int:
-        nums.sort(reverse = True)
+        # nums.sort(reverse = True)
 
         def largest(num: int) -> int:
             max_digit = 0
