@@ -12,16 +12,16 @@ class Solution:
                 if i == 0 and j == 0:
                     continue
                 if i > 0:
-                    for k in dp[i - 1][j]:
-                        dp[i][j][k] = max(dp[i][j][k], dp[i - 1][j][k] + coins[i][j])
+                    for k, v in dp[i - 1][j].items():
+                        dp[i][j][k] = max(dp[i][j][k], v + coins[i][j])
                         if coins[i][j] < 0 and k < 2:
-                            dp[i][j][k + 1] = max(dp[i][j][k + 1], dp[i - 1][j][k])
+                            dp[i][j][k + 1] = max(dp[i][j][k + 1], v)
 
                 if j > 0:
-                    for k in dp[i][j - 1]:          
-                        dp[i][j][k] = max(dp[i][j][k], dp[i][j - 1][k] + coins[i][j])
+                    for k, v in dp[i][j - 1].items():          
+                        dp[i][j][k] = max(dp[i][j][k], v + coins[i][j])
                         if coins[i][j] < 0 and k < 2:
-                            dp[i][j][k + 1] = max(dp[i][j][k + 1], dp[i][j - 1][k])
+                            dp[i][j][k + 1] = max(dp[i][j][k + 1], v)
                 
         
         return max(dp[m - 1][n - 1].values())
