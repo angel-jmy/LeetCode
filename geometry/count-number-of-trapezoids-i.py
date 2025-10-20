@@ -15,4 +15,4 @@ class Solution:
             sq_sum += n_lines ** 2
    
 
-        return (line_sum ** 2 -sq_sum) // 2 # Formula!!!
+        return (line_sum ** 2 -sq_sum) // 2 % MOD # Formula!!!
