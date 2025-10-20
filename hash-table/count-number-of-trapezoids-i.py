@@ -1,19 +1,18 @@
 class Solution:
     def countTrapezoids(self, points: List[List[int]]) -> int:
         MOD = 10 ** 9 + 7
-        # Couter of points and lines using y axes
+        # Couter of lines using y axes
         counts = defaultdict(int)
-        lines = defaultdict(int)
         for x, y in points:
-            lines[y] += counts[y]
             counts[y] += 1
 
-        ylist = list(lines.keys())
-        N_y = len(ylist)
+        line_sum = 0 # Number of lines
+        sq_sum = 0 # Sum N_lines^2
+        for y in counts:
+            n = counts[y]
+            n_lines = n * (n - 1) // 2
+            line_sum += n_lines
+            sq_sum += n_lines ** 2
+   
 
-        total = 0
-        for i in range(N_y):
-            for j in range(i + 1, N_y):
-                total = (total + lines[ylist[i]] * lines[ylist[j]]) % MOD
-
-        return total
+        return (line_sum ** 2 -sq_sum) // 2 # Formula!!!
