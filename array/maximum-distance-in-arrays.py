@@ -1,8 +1,47 @@
 class Solution:
     def maxDistance(self, arrays: List[List[int]]) -> int:
-        max_diff = 0
-        ranges = [[x[0], x[-1]] for x in arrays]
-        ranges1 = sorted(ranges, key = lambda x: (x[0], x[1]))
-        ranges2 = sorted(ranges, key = lambda x: (-x[1], -x[0]))
+        min1, min2 = float('inf'), float('inf')
+        max1, max2 = -float('inf'), -float('inf')
 
-        return max(ranges1[-1][-1] - ranges1[0][0], ranges2[0][1] - ranges2[-1][0])
+        min_idx1, min_idx2 = -1, -1
+        max_idx1, max_idx2 = -1, -1
+
+        for i in range(len(arrays)):
+            l = arrays[i]
+
+            curr_min, curr_max = l[0], l[-1]
+            if min1 <= curr_min < min2:
+                min2 = curr_min
+                min_idx2 = i
+
+            elif curr_min < min1:
+                min2 = min1
+                min_idx2 = min_idx1
+                min1 = curr_min
+                min_idx1 = i
+
+            if max1 >= curr_max > max2:
+                max2 = curr_max
+                max_idx2 = i
+
+            elif curr_max > max1:
+                max2 = max1
+                max_idx2 = max_idx1
+                max1 = curr_max
+                max_idx1 = i
+
+        max_diff = 0
+        for i in range(len(arrays)):
+            l = arrays[i]
+            curr_min, curr_max = l[0], l[-1]
+            if i == max_idx1:
+                max_diff = max(max_diff, max2 - curr_min)
+            else:
+                max_diff = max(max_diff, max1 - curr_min)
+
+            if i == min_idx1:
+                max_diff = max(max_diff, curr_max - min2)
+            else:
+                max_diff = max(max_diff, curr_max - min1)
+
+        return max_diff
