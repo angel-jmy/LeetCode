@@ -3,7 +3,7 @@ class Solution:
         N = len(nums)
         max_prod = -float('inf')
 
-        for i in range(N - m):
+        for i in range(N - m + 1):
             for j in range(i + m - 1, N):
                 prod = nums[i] * nums[j]
                 max_prod = max(max_prod, prod)
