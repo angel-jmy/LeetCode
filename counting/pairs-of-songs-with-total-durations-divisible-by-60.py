@@ -8,7 +8,7 @@ class Solution:
                 pairs += 1
                 continue
             comp = 60 - curr_mod
-            if comp in mods:
+            if comp in mods.keys():
                 pairs += mods[comp]
 
             mods[curr_mod] = mods.get(curr_mod, 0) + 1
