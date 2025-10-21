@@ -20,9 +20,9 @@ class Solution:
             if nums[left] == nums[i]:
                 continue
 
-            if nums[left] > 2:
+            if counts[nums[left]] > 2:
                 counts[nums[left]] -= 1
-            elif nums[left] == 2:
+            elif counts[nums[left]] == 2:
                 counts[nums[left]] -= 1
                 n_not_unique -= 1
             else:
