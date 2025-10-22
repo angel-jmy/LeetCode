@@ -23,6 +23,7 @@ class Solution:
                     l += 1
 
                 counts[fruits[r]] += 1
+                types += 1
 
             max_len = max(max_len, r - l + 1)
 
