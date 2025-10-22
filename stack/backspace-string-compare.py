@@ -5,12 +5,14 @@ class Solution:
             if c != '#':
                 lstS.append(c)
             else:
-                lstS.pop()
+                if lstS:
+                    lstS.pop()
 
         for c in t:
             if c != '#':
                 lstT.append(c)
             else:
-                lstT.pop()
+                if lstT:
+                    lstT.pop()
 
         return lstS == lstT
