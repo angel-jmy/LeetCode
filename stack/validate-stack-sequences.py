@@ -18,11 +18,14 @@ class Solution:
                 i += 1
                 j += 1
 
-        if j < N:
+        while j < N:
             if stack and popped[j] != stack[-1]:
                 return False
             if not stack:
                 return False
+
+            stack.pop()
+            j += 1
 
 
         return True
