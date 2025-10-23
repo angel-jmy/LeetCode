@@ -2,20 +2,16 @@ class StockSpanner:
 
     def __init__(self):
         self.prices = []
-        self.days = 0
+        self.stack = [] # Stores the price and span so far
         
 
-    def next(self, price: int) -> int:        
-        span = 0
-        self.prices.append(price)
-        self.days += 1
-        N = self.days
-       
-        for i in range(N - 1, -1, -1):
-            if self.prices[i] <= price:
-                span += 1
-            else:
-                break
+    def next(self, price: int) -> int:   
+        span = 1     
+        while self.stack and self.stack[-1][0] <= price:
+            _, prev_span = self.stack.pop()
+            span += prev_span
+        
+        self.stack.append((price, span))
         
         return span
 
