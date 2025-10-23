@@ -11,11 +11,11 @@ class StockSpanner:
         self.days += 1
         N = self.days
        
-        for i in range(N):
+        for i in range(N - 1, -1, -1):
             if self.prices[i] <= price:
                 span += 1
             else:
-                span = 0
+                break
         
         return span
 
