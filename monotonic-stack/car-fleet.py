@@ -7,9 +7,9 @@ class Solution:
 
         stack = []
         for i in range(N - 1, -1, -1):
-            while stack and combined[i][1] <= combined[stack[-1]][1]:
-                stack.pop()               
-
-            stack.append(i)
+            if stack and combined[i][1] <= combined[stack[-1]][1]:
+                pass           
+            else:
+                stack.append(i)
 
         return len(stack)
