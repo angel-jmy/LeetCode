@@ -3,6 +3,9 @@ class Solution:
         N = len(nums)
         l, r = 0, 0
         diff = sum(nums) - x
+        if diff == 0:
+            return N
+            
         curr_sum = 0
 
         max_len = 0
