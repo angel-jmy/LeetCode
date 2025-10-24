@@ -5,12 +5,12 @@ class Solution:
         diff = sum(nums) - x
         if diff == 0:
             return N
-            
+
         curr_sum = 0
 
         max_len = 0
 
-        while r < N:
+        for r in range(N):
             curr_sum += nums[r]
             while curr_sum > diff and l < N:
                 curr_sum -= nums[l]
