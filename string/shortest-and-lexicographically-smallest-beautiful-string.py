@@ -4,7 +4,7 @@ class Solution:
         l, r = 0, 0
         counts = 0
         min_len = N + 1
-        min_str = "1" * N
+        min_str = "1" * (N + 1)
 
         for r in range(N):
             if s[r] == '1':
@@ -26,4 +26,4 @@ class Solution:
         
         # print(min_len)
 
-        return min_str if min_str != "1" * N else ""
+        return min_str if min_str != "1" * (N + 1) else ""
