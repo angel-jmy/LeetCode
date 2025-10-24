@@ -21,7 +21,6 @@ class Solution:
                 curr_sum -= nums[l]
                 l += 1
 
-            r += 1
 
         return N - max_len if max_len != 0 else -1
 
