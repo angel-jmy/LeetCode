@@ -17,7 +17,6 @@ class Solution:
         return N - max_len if max_len != -1 else -1
         
         
-        
         # N = len(nums)
         # l, r = 0, 0
         # diff = sum(nums) - x
