@@ -17,7 +17,7 @@ class Solution(object):
             while max_stack and min_stack and (nums[max_stack[0]] - nums[min_stack[0]]) > 2:     
                 if max_stack[0] <= l:
                     max_stack.popleft()
-                if min_stack[0] <= 1:
+                if min_stack[0] <= l:
                     min_stack.popleft()            
                 l += 1 
 
