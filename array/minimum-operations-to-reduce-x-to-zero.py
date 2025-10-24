@@ -9,7 +9,7 @@ class Solution:
 
         while r < N:
             curr_sum += nums[r]
-            while curr_sum > diff:
+            while curr_sum > diff and l + 1 < N:
                 curr_sum -= nums[l]
                 l += 1
 
@@ -19,6 +19,7 @@ class Solution:
                 l += 1
 
             r += 1
+
         return N - max_len if max_len != 0 else -1
 
 
