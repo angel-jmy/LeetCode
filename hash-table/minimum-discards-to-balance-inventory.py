@@ -7,7 +7,8 @@ class Solution:
 
         for i in range(N):
             x = arrivals[i]
-            while dq[x] and dq[x][0] < i - w + 1:
+            left = i - w + 1
+            while dq[x] and dq[x][0] < left:
                 dq[x].popleft()
 
             curr_count = len(dq[x])
