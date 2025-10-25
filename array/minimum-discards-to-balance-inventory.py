@@ -10,10 +10,10 @@ class Solution:
             while dq[x] and dq[x][0] < i - w + 1:
                 dq[x].popleft()
 
-            if len(dq[x]) < m:
+            curr_count = len(dq[x])
+            if curr_count < m:
                 dq[x].append(i)
-            elif len(dq[x]) == m:
+            elif curr_count == m:
                 min_disc += 1
-
 
         return min_disc
