@@ -12,14 +12,11 @@ class Solution:
                 l = r - minutes
                 curr_num -= customers[l] * grumpy[l]
                 l += 1
-
             if curr_num > max_add:
                 max_add = curr_num
                 # window = [l, r]
-
         total = sum([customers[i] * (1 - grumpy[i]) for i in range(N)])
         # print(window)
         # print(max_add)
-
         return total + max_add
 
