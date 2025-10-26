@@ -3,7 +3,7 @@ class Solution:
         N = len(s)
         if k == N:
             return 1
-            
+
         xsum = ysum = 0
 
         points = set()
@@ -12,6 +12,10 @@ class Solution:
         for i in range(k):
             xsum += 1 if s[i] == 'R' else -1 if s[i] == 'L' else 0
             ysum += 1 if s[i] == 'U' else -1 if s[i] == 'D' else 0
+            if i == k - 1 and (xsum, ysum) not in points:
+                counter += 1
+                points.add((xsum, ysum))
+
 
         for i in range(k, N):
             xsum += 1 if s[i] == 'R' else -1 if s[i] == 'L' else 0
