@@ -1,8 +1,6 @@
 class Solution:
     def answerQueries(self, nums: List[int], queries: List[int]) -> List[int]:
         N = len(nums)
-        M = len(queries)
-        
         nums.sort()
         pref = [0] * (N + 1)
 
