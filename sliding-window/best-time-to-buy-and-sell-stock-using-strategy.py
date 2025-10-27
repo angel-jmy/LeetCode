@@ -18,7 +18,7 @@ class Solution:
         maxprof = max(maxprof, base + delta)
 
         for i in range(k, N):
-            mid = i - k // 2 + 1
+            mid = i - k // 2
             win_prof -= prices[mid]
             win_prof += prices[i]
             orig_prof = pref[i + 1] - pref[i - k + 1]
