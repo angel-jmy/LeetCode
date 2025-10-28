@@ -24,4 +24,4 @@ class Solution:
 
             hashmap[num] = i
 
-        return max_sum
+        return max_sum if max_sum != -float('inf') else 0
