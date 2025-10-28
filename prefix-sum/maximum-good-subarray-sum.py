@@ -4,7 +4,7 @@ class Solution:
         pref = [0] * (N + 1)
         max_sum = -float('inf')
 
-        hashmap = {}
+        hashmap = defaultdict(list)
 
         for i in range(N):
             num = nums[i]
@@ -13,15 +13,15 @@ class Solution:
             comp1 = num + k
             comp2 = num - k
             if comp1 in hashmap:
-                left = hashmap[comp1]
-                cur_sum = pref[i + 1] - pref[left]
-                max_sum = max(max_sum, cur_sum)
+                for left in hashmap[comp1]:
+                    cur_sum = pref[i + 1] - pref[left]
+                    max_sum = max(max_sum, cur_sum)
 
             if comp2 in hashmap:
-                left = hashmap[comp2]
-                cur_sum = pref[i + 1] - pref[left]
-                max_sum = max(max_sum, cur_sum)
+                for left in hashmap[comp2]:
+                    cur_sum = pref[i + 1] - pref[left]
+                    max_sum = max(max_sum, cur_sum)
 
-            hashmap[num] = i
+            hashmap[num].append(i)
 
         return max_sum if max_sum != -float('inf') else 0
