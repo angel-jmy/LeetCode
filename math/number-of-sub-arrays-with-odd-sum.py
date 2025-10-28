@@ -10,12 +10,12 @@ class Solution:
         for i in range(N):
             curr_sum += arr[i]
             if curr_sum % 2:
-                counter = (counter + cache[0]) 
+                counter = (counter + cache[0]) % MOD
                 cache[1] = cache[1] + 1
             else:
-                counter = (counter + cache[1])
+                counter = (counter + cache[1]) % MOD
                 cache[0] = cache[0] + 1
 
-        return counter % MOD
+        return counter
 
 
