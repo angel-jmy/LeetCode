@@ -18,12 +18,11 @@ class Solution:
 
         for pair1, val1 in f_len.items():
             fl, fr = pair1
-            cur_sum = val1
             for pair2, val2 in s_len.items():
                 sl, sr = pair2
-                if fl <= sr <= fr or fl <= sl <= fr:
+                if sr < fl or sl > fr:
+                    max_sum = max(max_sum, val1 + val2)
+                else:
                     continue
-
-                max_sum = max(max_sum, cur_sum + val2)
         
         return max_sum
