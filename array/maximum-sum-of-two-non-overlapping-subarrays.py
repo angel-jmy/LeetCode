@@ -1,28 +1,27 @@
 class Solution:
     def maxSumTwoNoOverlap(self, nums: List[int], firstLen: int, secondLen: int) -> int:
-        N = len(nums)
-        pref = [0] * (N + 1)
-        for i in range(N):
-            pref[i + 1] = pref[i] + nums[i]
+        def best(L, M):
+            # Max sum where an L-length window occurs before an M-length window
+            n = len(nums)
+            # initial window sums
+            Lsum = sum(nums[:L])
+            Msum = sum(nums[L:L+M])
+            maxL = Lsum
+            ans = maxL + Msum
 
-        f_len, s_len = {}, {}
-        for r in range(firstLen - 1, N):
-            l = r - firstLen + 1
-            f_len[(l, r)] = pref[r + 1] - pref[l]
+            # i indexes the *end* of the combined prefix we’ve scanned so far.
+            # At each step, we advance both windows by 1:
+            #   - L window ends at i-M (so its start is i-M-L+1)
+            #   - M window ends at i   (start is i-M+1)
+            for i in range(L + M, n):
+                # advance L window by 1: drop nums[i-M-L], add nums[i-M]
+                Lsum += nums[i - M] - nums[i - M - L]
+                maxL = max(maxL, Lsum)
 
-        for r in range(secondLen - 1, N):
-            l = r - secondLen + 1
-            s_len[(l, r)] = pref[r + 1] - pref[l]
+                # advance M window by 1: drop nums[i-M], add nums[i]
+                Msum += nums[i] - nums[i - M]
 
-        max_sum = -float('inf')
+                ans = max(ans, maxL + Msum)
+            return ans
 
-        for pair1, val1 in f_len.items():
-            fl, fr = pair1
-            for pair2, val2 in s_len.items():
-                sl, sr = pair2
-                if sr < fl or sl > fr:
-                    max_sum = max(max_sum, val1 + val2)
-                else:
-                    continue
-        
-        return max_sum
+        return max(best(firstLen, secondLen), best(secondLen, firstLen))
