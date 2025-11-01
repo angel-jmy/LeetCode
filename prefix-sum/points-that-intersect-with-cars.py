@@ -1,24 +1,19 @@
 class Solution:
     def numberOfPoints(self, nums: List[List[int]]) -> int:
-        N = len(nums)
-        if N == 1:
-            return nums[0][1] - nums[0][0] + 1
-        
-        nums.sort(key = lambda x: (x[0], x[1]))
-        # cur_set = set(range(nums[0][0], nums[0][1] + 1))
-        counter = nums[0][1] + 1 - nums[0][0]
-        # print(cur_set)
+        nums.sort()  # sort by start, then end
+        start0, end0 = nums[0]
+        counter = end0 - start0 + 1
+        cur_end = end0
 
-        # overlaps = set()
-        for i in range(1, N):
-            new_count = nums[i][1] + 1 - nums[i][0]
-            # new_set = set(range(nums[i][0], nums[i][1] + 1))
-            # print(new_set)
-
-            overlaps = min(nums[i - 1][1], nums[i][1]) - nums[i][0] + 1 if nums[i - 1][1] >= nums[i][0] else 0
-            # print(overlaps)
-            counter += new_count - overlaps
-            # cur_set |= new_set
-            # print(cur_set)
+        for a, b in nums[1:]:
+            if a > cur_end:
+                # disjoint: add whole interval
+                counter += b - a + 1
+                cur_end = b
+            else:
+                # overlap: only add what's beyond cur_end
+                add = max(0, b - cur_end)
+                counter += add
+                cur_end = max(cur_end, b)
 
         return counter
