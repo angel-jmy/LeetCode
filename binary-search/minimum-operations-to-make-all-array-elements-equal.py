@@ -12,10 +12,6 @@ class Solution:
         for i in range(N - 2, -1, -1):
             suffs[i] = suffs[i + 1] + nums[i]
 
-        print(nums)
-        print(prefs)
-        print(suffs)
-        
         def binary_search(target):
             l, r = 0, N - 1
             while l <= r:
@@ -26,13 +22,11 @@ class Solution:
                     l = mid + 1
             return r
 
-        print(binary_search(1))
-
         res = []
         for q in queries:
             # print(q)
             idx = binary_search(q)
-            print(idx)
+            # print(idx)
             if q < nums[0]:
                 ops = suffs[0] - q * N
             elif idx + 1 < N:
