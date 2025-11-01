@@ -13,12 +13,13 @@ class Solution:
         res = []
         for q in queries:
             # print(q)
-            idx = bisect_right(nums, q)
-            print(idx)
-            left = q * idx - prefs[idx]
-            right = (total - prefs[idx]) * q * (N - idx)
+            i = bisect_right(nums, q)
+            sum_left = prefs[i - 1] if i > 0 else 0
+            sum_right = total - (prefs[i - 1] if i > 0 else 0)
 
-            ops = left + right
+            left_ops = q * i - sum_left
+            right_ops = sum_right - q * (N - i)
+            res.append(left_ops + right_ops)
 
             # if q < nums[0]:
             #     ops = suffs[0] - q * N
@@ -26,7 +27,7 @@ class Solution:
             #     ops = q * (idx + 1) - prefs[idx] + suffs[idx + 1] - q * (N - idx - 1)
             # else:
             #     ops = q * (idx + 1) - prefs[idx]
-            res.append(ops)
+            # res.append(ops)
 
         return res
 
