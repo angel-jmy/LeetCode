@@ -20,9 +20,6 @@ class Solution:
             suffs[i] += suff_map[nums[i]]
             suff_map[nums[i]] += i
 
-        print(prefs)
-        print(suffs)
-
         arr = [0] * N
         for i in range(N):
             if i == 0:
