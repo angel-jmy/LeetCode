@@ -10,9 +10,8 @@ class Solution:
         pref_map = defaultdict(int)
         pref_map[nums[0]] = 0
         for i in range(1, N):
-            if nums[i] in pref_map:
-                prefs[i] += pref_map[nums[i]]
-                pref_map[nums[i]] += i
+            prefs[i] += pref_map[nums[i]]
+            pref_map[nums[i]] += i
         
         suff_map = defaultdict(int)
         suff_map[nums[N - 1]] = N - 1
