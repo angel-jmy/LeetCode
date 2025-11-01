@@ -15,7 +15,7 @@ class Solution:
             # new_set = set(range(nums[i][0], nums[i][1] + 1))
             # print(new_set)
 
-            overlaps = nums[i - 1][1] - nums[i][0] + 1 if nums[i - 1][1] >= nums[i][0] else 0
+            overlaps = min(nums[i - 1][1], nums[i][1]) - nums[i][0] + 1 if nums[i - 1][1] >= nums[i][0] else 0
             # print(overlaps)
             counter += new_count - overlaps
             # cur_set |= new_set
