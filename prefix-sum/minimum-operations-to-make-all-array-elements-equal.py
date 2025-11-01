@@ -33,7 +33,9 @@ class Solution:
             # print(q)
             idx = binary_search(q)
             print(idx)
-            if idx + 1 < N:
+            if q < nums[0]:
+                ops = suffs[0] - q * N
+            elif idx + 1 < N:
                 ops = q * (idx + 1) - prefs[idx] + suffs[idx + 1] - q * (N - idx - 1)
             else:
                 ops = q * (idx + 1) - prefs[idx]
