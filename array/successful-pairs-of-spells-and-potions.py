@@ -1,6 +1,6 @@
 class Solution:
     def successfulPairs(self, spells: List[int], potions: List[int], success: int) -> List[int]:
-        N, M = len(spells), len(potions)
+        M = len(potions)
         # spells.sort()
         potions.sort()
 
