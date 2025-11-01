@@ -1,36 +1,27 @@
 class Solution:
-    def distance(self, nums: List[int]) -> List[int]:
-        
-        
+    def distance(self, nums: List[int]) -> List[int]:        
         N = len(nums)
-        left = Counter()
-        right = Counter(nums[1:])
-
-        prefs = [0] * N
+        arr = [0] * N
+        
+        left = defaultdict(int)
+        left[nums[0]] = 1
         pref_map = defaultdict(int)
         pref_map[nums[0]] = 0
         for i in range(1, N):
-            prefs[i] += pref_map[nums[i]]
+            arr[i] += i * left[nums[i]] - pref_map[nums[i]]
             pref_map[nums[i]] += i
+            left[nums[i]] += 1
         
+        del left
+
+        right = defaultdict(int)
+        right[nums[N - 1]] = 1
         suff_map = defaultdict(int)
         suff_map[nums[N - 1]] = N - 1
-        suffs = [0] * N
         for i in range(N - 2, -1, -1):
-            suffs[i] += suff_map[nums[i]]
+            arr[i] += suff_map[nums[i]] - i * right[nums[i]]
             suff_map[nums[i]] += i
+            right[nums[i]] += 1
 
-        arr = [0] * N
-        for i in range(N):
-            if i == 0:
-                arr[i] = suffs[i] - i * right[nums[i]]
-            elif i == N - 1:
-                arr[i] = i * left[nums[i]] - prefs[i]
-            else:
-                arr[i] = suffs[i] - i * right[nums[i]] + i * left[nums[i]] - prefs[i]
-
-            left[nums[i]] += 1
-            if i + 1 < N and right[nums[i + 1]] > 0:
-                right[nums[i + 1]] -= 1
         
         return arr
