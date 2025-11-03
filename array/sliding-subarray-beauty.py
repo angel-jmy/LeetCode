@@ -16,7 +16,7 @@ class Solution:
             counts[nums[i - 1]] -=1
             counts[nums[i + k - 1]] += 1
             counter = 0
-            print(counts)
+            # print(counts)
             for num in range(-50, 0):
                 counter += counts[num]
                 # print(counter, num)
