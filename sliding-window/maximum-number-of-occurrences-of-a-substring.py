@@ -25,7 +25,10 @@ class Solution:
                 window[s[r]] += 1
                 if uniques <= maxLetters:
                     counts[s[l + 1:r + 1]] += 1
-
+            
+            if not counts:
+                return 0
+                
             return max(counts.items(), key = lambda x: x[1])[1]
 
         max_occur = 0
