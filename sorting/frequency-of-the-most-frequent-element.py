@@ -12,12 +12,12 @@ class Solution:
             items = r - l
             ops += (nums[r] - nums[r - 1]) * items
             while ops > k and l < N:
-                ops = (ops - (nums[r - 1] - nums[l])) // items
+                ops -= nums[r] - nums[l]
                 l += 1
             
             if ops > k:
                 break
-                
+
             max_len = max(max_len, r - l + 1)
 
         return max_len
