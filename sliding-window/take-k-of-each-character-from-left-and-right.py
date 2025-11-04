@@ -23,4 +23,4 @@ class Solution:
 
             max_len = max(max_len, r - l + 1)
 
-        return N - max_len if max_len else -1
+        return N - max_len
