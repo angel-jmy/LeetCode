@@ -1,6 +1,8 @@
 class Solution:
     def takeCharacters(self, s: str, k: int) -> int:
         N = len(s)
+        if k == 0:
+            return 0
         tot_count = Counter(s)
         if len(tot_count) < 3:
             return -1
