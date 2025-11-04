@@ -14,7 +14,10 @@ class Solution:
             while ops > k and l < N:
                 ops = (ops - (nums[r - 1] - nums[l])) // items
                 l += 1
-
+            
+            if ops > k:
+                break
+                
             max_len = max(max_len, r - l + 1)
 
         return max_len
