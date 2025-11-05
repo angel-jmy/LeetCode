@@ -9,8 +9,8 @@ class Solution:
             window[nums[r]] += 1
             max_freq = max(max_freq, window[nums[r]])
             while r - l + 1 - max_freq > k:
-                if nums[l] == nums[r]:
-                    max_freq -= 1
+                # if nums[l] == nums[r]:
+                #     max_freq -= 1
                 window[nums[l]] -= 1
                 l += 1
             
