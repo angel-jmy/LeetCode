@@ -19,7 +19,7 @@ class Solution:
             return self.treeHeight(root.right) <= 1
         
         return abs(self.treeHeight(root.left) - self.treeHeight(root.right)) <= 1 and self.isBalanced(root.left) and self.isBalanced(root.right)
-        
+
 
 
     def treeHeight(self, root: Optional[TreeNode]) -> int:
@@ -29,4 +29,4 @@ class Solution:
         if not root.left and not root.right:
             return 1
 
-        return 1 + max(self.treeHeight(root.left), self.treeHeight(root.left))
+        return 1 + max(self.treeHeight(root.left), self.treeHeight(root.right))
