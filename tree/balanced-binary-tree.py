@@ -18,7 +18,7 @@ class Solution:
         if not root.left:
             return self.treeHeight(root.right) <= 1
         
-        return abs(self.treeHeight(root.left) - self.treeHeight(root.right)) <= 1
+        return abs(self.treeHeight(root.left) - self.treeHeight(root.right)) <= 1 and self.isBalanced(root.left) and self.isBalanced(root.right)
 
 
 
