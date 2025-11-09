@@ -12,5 +12,7 @@ class Solution:
                 if stack[:-1] and stack[-2][0] == '(' and stack[-2][1] >= k:
                     stack.pop()
                     stack[-1][1] -= k
+                    if stack[-1][1] == 0:
+                        stack.pop()
 
         return ''.join(c * cnt for c, cnt in stack)
