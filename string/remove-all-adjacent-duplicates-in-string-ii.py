@@ -1,16 +1,14 @@
 class Solution:
     def removeDuplicates(self, s: str, k: int) -> str:
-        res = []
-        counts = defaultdict(int)
-        cur_len = 0
+        stack = []  # each item: [char, run_length]
 
+        for ch in s:
+            if stack and stack[-1][0] == ch:
+                stack[-1][1] += 1
+                if stack[-1][1] == k:
+                    stack.pop()       # delete this run of k
+            else:
+                stack.append([ch, 1])
 
-        for i in range(len(s)):
-            c = s[i]
-            res.append(c)
-            counts[c] += 1
-            if counts[c] == k:
-                res = res[:-k]
-                counts[c] -= k
-
-        return ''.join(res)
+        # rebuild string
+        return "".join(ch * cnt for ch, cnt in stack)
