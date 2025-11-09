@@ -1,27 +1,16 @@
 class Solution:
     def removeDuplicates(self, s: str, k: int) -> str:
         res = []
+        counts = defaultdict(int)
         cur_len = 0
+
 
         for i in range(len(s)):
             c = s[i]
-            if not res:
-                res.append(c)
-                cur_len += 1
-            else:
-                if cur_len >= k - 1:
-                    for j in range(1, k):
-                        if res[cur_len - j] != c:
-                            res.append(c)
-                            cur_len += 1
-                            break
-                    else:
-                        for _ in range(1, k):
-                            res.pop()
-                            cur_len -= 1
-                else:
-                    res.append(c)
-                    cur_len += 1
-            
+            res.append(c)
+            counts[c] += 1
+            if counts[c] == k:
+                res = res[:-k]
+                counts[c] -= k
 
         return ''.join(res)
