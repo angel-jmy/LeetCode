@@ -7,7 +7,7 @@ class Solution:
         while tot_len >= 2:
             y = -heapq.heappop(hq)
             x = -heapq.heappop(hq)
-            print(x, y)
+            # print(x, y)
             if x == y:
                 tot_len -= 2
             else:
