@@ -17,7 +17,7 @@ class KthLargest:
         if self.count < self.k:
             heapq.heappush(self.hq, val)
             self.count += 1
-            return val
+            return self.hq[0]
 
         # if not self.hq:
         #     heapq.heappush(self.hq, val)
