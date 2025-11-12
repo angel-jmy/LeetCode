@@ -12,6 +12,10 @@ class KthLargest:
 
 
     def add(self, val: int) -> int:
+        if not self.hq:
+            heapq.heappush(val)
+            return val
+
         if val <= self.hq[0]:
             return self.hq[0]
         else:
