@@ -7,8 +7,6 @@ class Solution:
         while N >= 2:
             x = heapq.heappop(nums)
             y = heapq.heappop(nums)
-            print(x, y)
-
             if x >= k:
                 return ops
 
