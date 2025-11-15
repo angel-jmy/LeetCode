@@ -8,4 +8,8 @@ class Solution:
             val = heapq.heappop(nums)
             heapq.heappush(nums, val + 1)
 
-        return prod(nums) % MOD
+        res = 1
+        for num in nums:
+            res = (res * num) % MOD
+
+        return res
