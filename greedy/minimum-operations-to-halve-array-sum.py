@@ -12,6 +12,6 @@ class Solution:
             half = num / 2
             reduced += half
             ops += 1
-            heapq.heappush(nums, -reduced)
+            heapq.heappush(nums, -half)
 
         return ops
