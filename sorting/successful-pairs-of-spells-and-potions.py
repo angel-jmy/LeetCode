@@ -1,14 +1,13 @@
 class Solution:
     def successfulPairs(self, spells: List[int], potions: List[int], success: int) -> List[int]:
-        M = len(potions)
-        # spells.sort()
-        potions.sort()
-
         res = []
+        potions.sort()
+        M = len(potions)
+
         for s in spells:
             comp = success / s
-            i = bisect_left(potions, comp)
-            res.append(M - i)
+            idx = bisect_left(potions, comp)
+            res.append(M - idx)
 
         return res
 
