@@ -2,6 +2,11 @@ class Solution:
     def maximumBeauty(self, items: List[List[int]], queries: List[int]) -> List[int]:
         items.sort(key = lambda x: (x[0], x[1]))
         N = len(items)
+        pref_max = [0] * N
+        pref_max[0] = items[0][1]
+        for i in range(1, N):
+            pref_max[i] = max(pref_max[i - 1], items[i][1])
+
         def find_beauty(target):
             l, r = 0, N - 1
             while l <= r:
@@ -13,7 +18,7 @@ class Solution:
             if r < 0:
                 return 0
             else:
-                return items[r][1]
+                return pref_max[r]
 
         res = []
         for q in queries:
