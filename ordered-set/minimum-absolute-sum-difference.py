@@ -20,12 +20,12 @@ class Solution:
         
         for i in range(N):
             idx = find_closest(nums2[i])
-            if i == idx:
-                continue
+            # if i == idx:
+            #     continue
             red = abs(nums2[i] - nums1[i]) - abs(nums2[i] - nums1[idx])
             max_red = max(max_red, red)
 
      
-        ab_sum = (sum([abs(nums1[i] - nums2[i]) for i in range(N)]) - max_red) % MOD
+        ab_sum = (sum(abs(nums1[i] - nums2[i]) for i in range(N)) - max_red) % MOD
 
         return ab_sum
