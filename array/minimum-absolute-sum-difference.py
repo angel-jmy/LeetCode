@@ -25,8 +25,7 @@ class Solution:
             red = abs(nums2[i] - nums1[i]) - abs(nums2[i] - nums1[idx])
             max_red = max(max_red, red)
 
-        print(max_red)
-        print(sum([abs(nums1[i] - nums2[i]) for i in range(N)]))
+     
         ab_sum = (sum([abs(nums1[i] - nums2[i]) for i in range(N)]) - max_red) % MOD
 
         return ab_sum
