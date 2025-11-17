@@ -2,7 +2,9 @@ class SnapshotArray:
 
     def __init__(self, length: int):
         self.snap_id = 0
-        self.arr = [[(0, 0)]] * length # (id, elem)
+        self.arr = []
+        for _ in range(length):
+            self.arr.append([(0, 0)]) # (id, elem)
         # print(self.arr)
 
     def set(self, index: int, val: int) -> None:
