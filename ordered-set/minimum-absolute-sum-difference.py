@@ -10,7 +10,7 @@ class Solution:
             if diff > max_diff:
                 max_diff = diff
                 max_idx = i
-            ab_sum += diff
+            ab_sum = (ab_sum + diff) % MOD
 
         if ab_sum == 0:
             return 0
@@ -25,6 +25,6 @@ class Solution:
                 idx = idx - 1
         
         ab_sum -= max_diff
-        ab_sum += abs(target - nums1[idx])
+        ab_sum = (ab_sum + abs(target - nums1[idx])) % MOD
 
         return ab_sum
