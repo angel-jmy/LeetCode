@@ -1,8 +1,8 @@
 class Solution:
     def minAbsoluteSumDiff(self, nums1: List[int], nums2: List[int]) -> int:
         MOD = 10 ** 9 + 7
-        if nums1 == nums2:
-            return 0
+        # if nums1 == nums2:
+        #     return 0
         N = len(nums1)
         max_red = 0
         # combined = [(n1, n2) for n1, n2 in zip(nums1, nums2)]
