@@ -5,10 +5,6 @@ class Solution:
         #     return 0
         N = len(nums1)
         max_red = 0
-        # combined = [(n1, n2) for n1, n2 in zip(nums1, nums2)]
-        # combined.sort(key = lambda x: x[0])
-        # nums1 = [n1 for n1, n2 in combined]
-        # nums2 = [n2 for n1, n2 in combined]
         sorted_nums1 = sorted(nums1)
         def find_closest(t):            
             idx = bisect_left(sorted_nums1, t)
@@ -25,8 +21,7 @@ class Solution:
             #     continue
             red = abs(nums2[i] - nums1[i]) - abs(nums2[i] - sorted_nums1[idx])
             max_red = max(max_red, red)
-
-     
+  
         ab_sum = (sum(abs(nums1[i] - nums2[i]) for i in range(N)) - max_red) % MOD
 
         return ab_sum
