@@ -6,37 +6,42 @@
 #         self.right = right
 class Solution:
     def closestNodes(self, root: Optional[TreeNode], queries: List[int]) -> List[List[int]]:
+        nums = self.flatten(root)
+        print(nums)
+        N = len(nums)
         res = []
         for q in queries:
-            min_ = self.find_min(root, q)
-            max_ = self.find_max(root, q)
+            min_i = bisect_right(nums, q)
+            if min_i >= N:
+                if nums[min_i - 1] <= q:
+                    min_ = nums[min_i - 1]
+                else:
+                    min_ = -1
+            elif min_i > 0 and nums[min_i - 1] <= q:
+                min_ = nums[min_i - 1]
+            elif min_i == 0 and nums[min_i] > q:
+                min_ = -1
+            else:
+                min_ = nums[min_i]
+            max_i = bisect_left(nums, q)
+            if max_i >= N:
+                max_ = -1
+            else:
+                max_ = nums[max_i]
             res.append([min_, max_])
-
         return res
         
     
-    def find_min(self, root, q) -> int:
+    def flatten(self, root) -> List[int]:
         if not root:
-            return -1
-        if root.val == q:
-            return q
-        if root.val > q:
-            return self.find_min(root.left, q)
-        if root.val < q:
-            right = self.find_min(root.right, q)
-            if right == -1:
-                return root.val
-            return right
+            return []
+        if not root.left and not root.right:
+            return [root.val]
 
-    def find_max(self, root, q) -> int:
-        if not root:
-            return -1
-        if root.val == q:
-            return q
-        if root.val < q:
-            return self.find_max(root.right, q)
-        if root.val > q:
-            left = self.find_max(root.left, q)
-            if left == -1:
-                return root.val
-            return left
+        if not root.right:
+            return self.flatten(root.left) + [root.val]
+
+        if not root.left:
+            return [root.val] + self.flatten(root.right)
+
+        return self.flatten(root.left) + [root.val] + self.flatten(root.right)
