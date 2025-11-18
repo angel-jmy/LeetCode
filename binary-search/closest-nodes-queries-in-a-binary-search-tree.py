@@ -33,15 +33,14 @@ class Solution:
         
     
     def flatten(self, root) -> List[int]:
-        if not root:
-            return []
-        if not root.left and not root.right:
-            return [root.val]
-
-        if not root.right:
-            return self.flatten(root.left) + [root.val]
-
-        if not root.left:
-            return [root.val] + self.flatten(root.right)
-
-        return self.flatten(root.left) + [root.val] + self.flatten(root.right)
+        result = []
+        
+        def inorder(node):
+            if not node:
+                return
+            inorder(node.left)
+            result.append(node.val)  # O(1) append
+            inorder(node.right)
+        
+        inorder(root)
+        return result
