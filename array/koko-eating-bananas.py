@@ -16,7 +16,7 @@ class Solution:
 
             return hrs
 
-        l, r = 1, max(piles)
+        l, r = min(piles), max(piles)
         while l <= r:
             mid = l + (r - l) // 2
             hour = get_hours(mid)
