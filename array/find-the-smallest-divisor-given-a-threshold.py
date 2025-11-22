@@ -5,7 +5,7 @@ class Solution:
             divided = [ceil(num / div) for num in nums]
             return sum(divided)
 
-        l, r = 1, max(nums) + 1
+        l, r = 1, max(nums)
         while l <= r:
             mid = l + (r - l) // 2
             result = sum_div(mid)
