@@ -5,9 +5,9 @@
 #         self.next = next
 class Solution:
     def removeElements(self, head: Optional[ListNode], val: int) -> Optional[ListNode]:
-        curr = head
-        head = ListNode(0)
-        head.next = curr
+        # curr = head
+        head = ListNode(0, head)
+        # head.next = curr
         pointer = head
         while pointer.next:
             if pointer.next.val == val:
