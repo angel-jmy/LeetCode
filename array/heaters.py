@@ -18,7 +18,7 @@ class Solution:
                 j += 1
             return counter
 
-        l, r = 0, houses[N - 1] - houses[0]
+        l, r = 0, max(heaters[M - 1] - houses[0], houses[N - 1] - heaters[0])
         while l <= r:
             mid = l + (r - l) // 2
             counts = get_covered(mid)
