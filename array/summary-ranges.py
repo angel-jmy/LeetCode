@@ -1,5 +1,7 @@
 class Solution:
     def summaryRanges(self, nums: List[int]) -> List[str]:
+        if not nums:
+            return []
         N = len(nums)
         res = []
         l = 0
