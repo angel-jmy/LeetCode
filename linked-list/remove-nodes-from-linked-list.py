@@ -9,7 +9,7 @@ class Solution:
             return None
 
         revhead = self.revList(head)
-        print(revhead)
+        # print(revhead)
 
         curr = revhead
         max_val = curr.val
