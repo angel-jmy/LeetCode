@@ -8,10 +8,10 @@ class Solution:
         if not head:
             return None
 
-        revhead = self.revList(head)
+        head = self.revList(head)
         # print(revhead)
 
-        curr = revhead
+        curr = head
         max_val = curr.val
         while curr.next:
             if curr.next.val < max_val:
@@ -20,7 +20,7 @@ class Solution:
                 curr = curr.next
                 max_val = curr.val
 
-        return self.revList(revhead)
+        return self.revList(head)
 
     def revList(self, node):
         if not node:
