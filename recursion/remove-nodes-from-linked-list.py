@@ -5,20 +5,31 @@
 #         self.next = next
 class Solution:
     def removeNodes(self, head: Optional[ListNode]) -> Optional[ListNode]:
-        dummy = ListNode(0, head)
-        curr = dummy
+        if not head:
+            return None
 
+        revhead = self.revList(head)
+        print(revhead)
+
+        curr = revhead
+        max_val = curr.val
         while curr.next:
-            if curr.next.val < self.findLarge(curr.next):
+            if curr.next.val < max_val:
                 curr.next = curr.next.next
             else:
                 curr = curr.next
+                max_val = curr.val
 
-        return dummy.next
+        return self.revList(revhead)
 
+    def revList(self, node):
+        if not node:
+            return None
 
-    def findLarge(self, node):
-        if not node.next:
-            return 0
-        
-        return max(node.next.val, self.findLarge(node.next))
+        curr = ListNode(node.val, None)
+        while node.next:
+            curr = ListNode(node.next.val, curr)
+            node = node.next
+
+        return curr
+    
