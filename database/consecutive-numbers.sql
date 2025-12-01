@@ -1,18 +1,28 @@
-# Write your MySQL query statement below
--- select distinct l1.num as ConsecutiveNums
--- from Logs as l1, Logs as l2, Logs as l3
--- where l1.id = l2.id - 1 and l1.id = l3.id - 2
--- and 
--- l1.num = l2.num and l1.num = l3.num
-
-
-with combined as (
-    select id, num, 
-        lag(num, 1) over (order by id) as back1,
-        lag(num, 2) over (order by id) as back2
+-- Write your PostgreSQL query statement below
+with lags as (
+    select id, num, coalesce(lag(num) over (order by id), 0) as prev
     from Logs
+),
+
+flags as (
+    select id, num, 
+     case when num = prev then 0 else 1 end as flag
+    from lags
+),
+
+sums as (
+    select id, num, sum(flag) over (order by id) as grp
+    from flags
+),
+
+grouped as (
+    select grp, count(*) as cnt
+    from sums
+    group by grp
+    having count(*) >= 3
 )
 
-select distinct num as ConsecutiveNums
-from combined 
-where num = back1 and num = back2
+select distinct s.num as ConsecutiveNums
+from sums s
+join grouped g
+on s.grp = g.grp;
