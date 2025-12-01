@@ -1,11 +1,11 @@
-# Write your MySQL query statement below
+-- Write your PostgreSQL query statement below
 with ranked as (
-    select d.name as `Department`, e.name as `Employee`, salary as Salary,
-        dense_rank() over (partition by d.id order by salary desc) as rnk
-    from Department d join Employee e
-    on d.id = e.departmentId
+    select departmentId, "name", salary,
+    dense_rank() over (partition by departmentId order by salary desc) as rnk
+    from Employee
 )
 
-select `Department`, `Employee`, Salary
-from ranked
-where rnk <= 3
+select d.name as "Department", r.name as "Employee", r.salary as Salary
+from ranked r join Department d
+on r.departmentId = d.id
+where rnk <= 3;
