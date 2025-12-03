@@ -29,5 +29,7 @@ class Solution:
                     mid = mid.next
                 mid.next = curr.next
                 break
+        else:
+            prev.next = mid
 
         return dummy.next
