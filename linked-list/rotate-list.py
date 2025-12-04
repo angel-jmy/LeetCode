@@ -15,6 +15,9 @@ class Solution:
             curr = curr.next
         
         k = k % length
+        if not k:
+            return head
+            
         target = length - k
         # print(target)
         i = 0
