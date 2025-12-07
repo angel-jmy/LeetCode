@@ -10,6 +10,9 @@ class Solution:
 
         def preorder(node, left):
             nonlocal sum_
+            if not node:
+                return
+                
             if not node.left and not node.right:
                 if left:
                     sum_ += node.val
