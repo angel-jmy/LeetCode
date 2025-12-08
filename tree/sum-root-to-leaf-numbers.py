@@ -12,7 +12,7 @@ class Solution:
             nonlocal sum_
 
             if not node:
-                sum_ += curr
+                # sum_ += curr
                 return
             
             if not node.left and not node.right:
