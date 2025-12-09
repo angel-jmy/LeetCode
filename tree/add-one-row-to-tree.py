@@ -13,7 +13,7 @@ class Solution:
         stack = deque([root])
         while stack:
             level_size = len(stack)
-            last_stack = stack
+            last_stack = stack.copy()
             if d < depth - 1:
                 for i in range(level_size):
                     node = stack.popleft()
