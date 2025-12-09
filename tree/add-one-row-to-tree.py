@@ -24,22 +24,15 @@ class Solution:
 
                 d += 1
             
-            elif d == depth - 1:
-                for i in range(level_size):
-                    node = stack.popleft()
-                    if node.left:
-                        node.left = TreeNode(val, node.left)
-                    if node.right:
-                        node.right = TreeNode(val, None, node.right)
-
+            else:
                 break
-        else:
-            print(len(last_stack))
-            for i in range(level_size):
-                node = last_stack.popleft()
-                node.left = TreeNode(val)
-                node.right = TreeNode(val)
-
+        
+        for i in range(level_size):
+            node = last_stack.popleft()
+            if node.left:
+                node.left = TreeNode(val, node.left)
+            if node.right:
+                node.right = TreeNode(val, None, node.right)
 
         print(d)
 
