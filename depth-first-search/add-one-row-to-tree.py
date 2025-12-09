@@ -27,6 +27,7 @@ class Solution:
             else:
                 break
         
+        print(level_size)
         for i in range(level_size):
             node = last_stack.popleft()
             if node.left:
