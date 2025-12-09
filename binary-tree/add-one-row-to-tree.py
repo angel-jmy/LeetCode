@@ -13,6 +13,7 @@ class Solution:
         stack = deque([root])
         while stack:
             level_size = len(stack)
+            last_stack = stack
             if d < depth - 1:
                 for i in range(level_size):
                     node = stack.popleft()
@@ -32,6 +33,12 @@ class Solution:
                         node.right = TreeNode(val, None, node.right)
 
                 break
+        else:
+            for i in range(level_size):
+                node = last_stack.popleft()
+                node.left = TreeNode(val)
+                node.right = TreeNode(val)
+
 
         print(d)
 
