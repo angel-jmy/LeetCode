@@ -34,6 +34,7 @@ class Solution:
 
                 break
         else:
+            print(len(last_stack))
             for i in range(level_size):
                 node = last_stack.popleft()
                 node.left = TreeNode(val)
