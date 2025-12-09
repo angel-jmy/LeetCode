@@ -33,4 +33,6 @@ class Solution:
 
                 break
 
+        print(d)
+
         return root
