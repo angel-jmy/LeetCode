@@ -27,14 +27,14 @@ class Solution:
             else:
                 break
         
-        print(level_size)
+        # print(level_size)
         for i in range(level_size):
             node = last_stack.popleft()
-            if node.left:
-                node.left = TreeNode(val, node.left)
-            if node.right:
-                node.right = TreeNode(val, None, node.right)
+            # if node.left:
+            node.left = TreeNode(val, node.left)
+            # if node.right:
+            node.right = TreeNode(val, None, node.right)
 
-        print(d)
+        # print(d)
 
         return root
