@@ -22,6 +22,8 @@ class Solution:
 
             for _ in range(size1):
                 node1, node2 = dq1.popleft(), dq2.popleft()
+                if node1.val != node2.val:
+                    return False
                 
                 same = self.equal(node1.left, node2.left) and self.equal(node1.right, node2.right)
                 mirror = self.equal(node1.left, node2.right) and self.equal(node1.right, node2.left)
