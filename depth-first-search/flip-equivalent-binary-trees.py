@@ -10,7 +10,7 @@ class Solution:
             return True
         if not root1 and root2:
             return False
-        if root2 and not root1:
+        if root1 and not root2:
             return False
 
         dq1, dq2 = deque([root1]), deque([root2])
