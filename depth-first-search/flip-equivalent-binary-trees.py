@@ -13,17 +13,21 @@ class Solution:
         if root1 and not root2:
             return False
 
+        if root1.val != root2.val:
+            return False
+
         dq1, dq2 = deque([root1]), deque([root2])
+
 
         while dq1 and dq2:
             size1, size2 = len(dq1), len(dq2)
-            if size1 != size2:
-                return False
+            # if size1 != size2:
+            #     return False
 
             for _ in range(size1):
                 node1, node2 = dq1.popleft(), dq2.popleft()
-                if node1.val != node2.val:
-                    return False
+                # if node1.val != node2.val:
+                #     return False
                 
                 same = self.equal(node1.left, node2.left) and self.equal(node1.right, node2.right)
                 mirror = self.equal(node1.left, node2.right) and self.equal(node1.right, node2.left)
