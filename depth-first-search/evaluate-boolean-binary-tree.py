@@ -15,10 +15,9 @@ class Solution:
                 return False
             if node.val == 1:
                 return True
-
             if node.val == 2:
                 return inorder(node.left) or inorder(node.right)
             else:
-                return inorder(node.left) or inorder(node.right)
+                return inorder(node.left) and inorder(node.right)
 
         return inorder(root)
