@@ -7,49 +7,22 @@
 class Solution:
     def findTilt(self, root: Optional[TreeNode]) -> int:
     
-        tilts = self.tiltTree(root)
-        # print(tilts)
-        return self.sumTree(tilts)
-        
+        total_tilt = 0
 
-    def sumTree(self, root):
-        sum_ = 0
-        def preorder(node):
-            nonlocal sum_
+        def postorder(node: Optional[TreeNode]) -> int:
+            nonlocal total_tilt
             if not node:
-                return 
-            sum_ += node.val
-            preorder(node.left)
-            preorder(node.right)
+                return 0
 
-        preorder(root)
+            left_sum = postorder(node.left)
+            right_sum = postorder(node.right)
 
-        return sum_
+            # tilt at this node
+            total_tilt += abs(left_sum - right_sum)
 
-    def tiltTree(self, root) -> Optional[TreeNode]:
-        def postorder(node):
-            if not node:
-                return None
-            if not node.left and not node.right:
-                return TreeNode(0)
-            if not node.right:
-                left = postorder(node.left)
-                sum_ = self.sumTree(node.left)
-                val = abs(sum_)
-                return TreeNode(val, left, None)
-            if not node.left:
-                right = postorder(node.right)
-                sum_ = self.sumTree(node.right)
-                val = abs(sum_)
-                return TreeNode(val, None, right)
+            # return sum of this subtree
+            return left_sum + right_sum + node.val
 
-            left = postorder(node.left)
-            right = postorder(node.right)
-            sum_1 = self.sumTree(node.left)
-            sum_2 = self.sumTree(node.right)
-            val = abs(sum_1 - sum_2)
-            return TreeNode(val, left, right)
-
-        return postorder(root)
-
+        postorder(root)
+        return total_tilt
             
