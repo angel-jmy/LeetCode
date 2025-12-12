@@ -7,23 +7,23 @@
 class Solution:
     def averageOfSubtree(self, root: TreeNode) -> int:
         counts = 0
-        def postorder(node) -> tuple: # (avg, #nodes)
+        def postorder(node) -> tuple: # (total, #nodes)
             nonlocal counts
 
             if not node:
                 return 0, 0
 
-            avg_left, cnt_left = postorder(node.left)
-            avg_right, cnt_right = postorder(node.right)
+            tot_left, cnt_left = postorder(node.left)
+            tot_right, cnt_right = postorder(node.right)
 
             cnt_new = cnt_left + cnt_right + 1
-            avg_new = (avg_left * cnt_left + avg_right * cnt_right + node.val) / cnt_new
+            tot_new = tot_left + tot_right + node.val
 
-            if node.val == int(avg_new):
+            if node.val == tot_new // cnt_new:
                 # print(node.val)
                 counts += 1
 
-            return avg_new, cnt_new
+            return tot_new, cnt_new
 
         postorder(root)
 
