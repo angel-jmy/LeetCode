@@ -19,11 +19,9 @@ class Solution:
         preorder(root)
 
         node0 = heapq.heappop(nodes)
-        print(node0)
         diff = 10 ** 5
         while nodes:
             node1 = heapq.heappop(nodes)
-            print(node1)
             diff = min(diff, node1 - node0)
             node0 = node1
 
