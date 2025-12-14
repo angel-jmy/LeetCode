@@ -25,6 +25,7 @@ class Solution:
             node1 = heapq.heappop(nodes)
             print(node1)
             diff = min(diff, node1 - node0)
+            node0 = node1
 
         return diff
 
