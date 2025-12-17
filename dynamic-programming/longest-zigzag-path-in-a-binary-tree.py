@@ -6,27 +6,31 @@
 #         self.right = right
 class Solution:
     def longestZigZag(self, root: Optional[TreeNode]) -> int:
-        self.ans = 0
+        length = 0
 
-        def dfs(node):
+        def dfs(node, left, d):
+            nonlocal length
             if not node:
-                # (left_len, right_len)
-                return -1, -1
-                # -1 so that when we add +1 → first edge becomes 0
+                return
+            if left: 
+                if node.right:
+                    length = max(length, d + 1)
+                    dfs(node.right, False, d + 1)
+                else:
+                    dfs(node.left, True, 0)
+                    dfs(node.left, False, 0)
 
-            left_l, left_r = dfs(node.left)
-            right_l, right_r = dfs(node.right)
+            else:
+                if node.left:
+                    length = max(length, d + 1)
+                    dfs(node.left, True, d + 1)
+                else:
+                    dfs(node.right, True, 0)
+                    dfs(node.right, False, 0)
 
-            # If last move was LEFT, we must go RIGHT next
-            left_len = left_r + 1
+        dfs(root, True, 0)
+        dfs(root, False, 0)
 
-            # If last move was RIGHT, we must go LEFT next
-            right_len = right_l + 1
+        return length
 
-            self.ans = max(self.ans, left_len, right_len)
-
-            return left_len, right_len
-
-        dfs(root)
-        return self.ans
     
