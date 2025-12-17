@@ -36,7 +36,7 @@ class Solution:
             if left: 
                 if node.left:
                     length = max(length, d + 1)
-                    dfs2(node.left, False, d + 1)
+                    dfs2(node.left, True, d + 1)
                 else:
                     dfs2(node.right, True, 0)
                     dfs2(node.right, False, 0)
@@ -44,7 +44,7 @@ class Solution:
             else:
                 if node.right:
                     length = max(length, d + 1)
-                    dfs2(node.right, True, d + 1)
+                    dfs2(node.right, False, d + 1)
                 else:
                     dfs2(node.left, True, 0)
                     dfs2(node.left, False, 0)
