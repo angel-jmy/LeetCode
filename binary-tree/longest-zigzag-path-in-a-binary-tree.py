@@ -6,56 +6,27 @@
 #         self.right = right
 class Solution:
     def longestZigZag(self, root: Optional[TreeNode]) -> int:
-        length = 0
+        self.ans = 0
 
-        def dfs1(node, left, d):
-            nonlocal length
+        def dfs(node):
             if not node:
-                return
-            if left: 
-                if node.right:
-                    length = max(length, d + 1)
-                    dfs1(node.right, False, d + 1)
-                else:
-                    dfs1(node.left, True, 0)
-                    dfs1(node.left, False, 0)
+                # (left_len, right_len)
+                return -1, -1
+                # -1 so that when we add +1 → first edge becomes 0
 
-            else:
-                if node.left:
-                    length = max(length, d + 1)
-                    dfs1(node.left, True, d + 1)
-                else:
-                    dfs1(node.right, True, 0)
-                    dfs1(node.right, False, 0)
+            left_l, left_r = dfs(node.left)
+            right_l, right_r = dfs(node.right)
 
+            # If last move was LEFT, we must go RIGHT next
+            left_len = left_r + 1
 
-        def dfs2(node, left, d):
-            nonlocal length
-            if not node:
-                return
-            if left: 
-                if node.left:
-                    length = max(length, d + 1)
-                    dfs2(node.left, True, d + 1)
-                else:
-                    dfs2(node.right, True, 0)
-                    dfs2(node.right, False, 0)
+            # If last move was RIGHT, we must go LEFT next
+            right_len = right_l + 1
 
-            else:
-                if node.right:
-                    length = max(length, d + 1)
-                    dfs2(node.right, False, d + 1)
-                else:
-                    dfs2(node.left, True, 0)
-                    dfs2(node.left, False, 0)
+            self.ans = max(self.ans, left_len, right_len)
 
+            return left_len, right_len
 
-        dfs1(root, True, 0)
-        dfs1(root, False, 0)
-
-        dfs2(root, True, 0)
-        dfs2(root, False, 0)
-
-        return length
-
+        dfs(root)
+        return self.ans
     
