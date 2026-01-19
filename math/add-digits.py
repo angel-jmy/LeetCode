@@ -2,7 +2,7 @@ class Solution:
     def addDigits(self, num: int) -> int:
         if num == 0:
             return 0
-            
+
         digits = 0
         while digits != 1:
             digits = 0
@@ -13,7 +13,7 @@ class Solution:
                 digits += 1
             
             num = res
-            print(num, digits)
+            # print(num, digits)
 
             
         return num
