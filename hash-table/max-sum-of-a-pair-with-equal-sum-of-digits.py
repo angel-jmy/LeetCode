@@ -1,25 +1,22 @@
 class Solution:
     def maximumSum(self, nums: List[int]) -> int:
-        def sum_digits(num):
-            sum_d = 0
-            while num:
-                sum_d += num % 10
-                num //= 10
-            
-            return sum_d
+        def sum_digits(n):
+            res = 0
+            while n:
+                res += n % 10
+                n //= 10
 
-        digits = defaultdict(list)
+            return res
+
+        cache = {}
+        curr = -1
         for num in nums:
-            d = sum_digits(num)
-            if len(digits[d]) < 2:
-                heapq.heappush(digits[d], num)
-            else:
-                heapq.heappushpop(digits[d], num)
-        
-        max_sum = -1
-        for d in digits.keys():
-            if len(digits[d]) < 2:
-                continue
-            max_sum = max(max_sum, sum(digits[d]))
+            val = sum_digits(num)
+            if val in cache:
+                curr = max(curr, cache[val] + num)
+                cache[val] = max(cache[val], num)
 
-        return max_sum
+            else:
+                cache[val] = num
+
+        return curr
