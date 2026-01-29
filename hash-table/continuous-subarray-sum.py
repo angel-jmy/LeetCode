@@ -4,11 +4,11 @@ class Solution:
         prefs = [0] * (N + 1)
 
         for i in range(1, N + 1):
-            prefs[i] = prefs[i - 1] + nums[i - 1]
+            prefs[i] = (prefs[i - 1] + nums[i - 1]) % k
 
         mods = defaultdict(list)
         for i in range(N + 1):
-            new_mod = prefs[i] % k
+            new_mod = prefs[i]
             if new_mod in mods:
                 length = len(mods[new_mod])
                 for j in range(length):
