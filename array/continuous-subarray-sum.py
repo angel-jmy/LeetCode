@@ -12,7 +12,7 @@ class Solution:
         while l < N + 1:
             r = l + 1
             while r < N + 1:
-                if (prefs[r] - prefs[l]) % k == 0:
+                if prefs[r] - prefs[l] and (prefs[r] - prefs[l]) % k == 0:
                     print(l, r)
                     return True
                 r += 1
