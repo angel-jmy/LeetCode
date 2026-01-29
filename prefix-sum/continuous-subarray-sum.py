@@ -10,7 +10,7 @@ class Solution:
 
         l, r = 0, 0
         while l < N + 1:
-            r = l + 1
+            r = l + 2
             while r < N + 1:
                 if (prefs[r] - prefs[l]) % k == 0:
                     print(l, r)
