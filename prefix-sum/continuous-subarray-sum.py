@@ -1,17 +1,23 @@
 class Solution:
     def checkSubarraySum(self, nums: List[int], k: int) -> bool:
         N = len(nums)
-        cache = {0: -1} # Recording the index of the first seen MOD
-        cur_sum = 0
+        prefs = [0] * (N + 1)
 
-        for i in range(N):
-            cur_sum += nums[i]
-            mod = cur_sum % k
-            if mod in cache:
-                if i - cache[mod] >= 2:
+        for i in range(1, N + 1):
+            prefs[i] = prefs[i - 1] + nums[i - 1]
+
+        print(prefs)
+
+        l, r = 0, 0
+        while l < N + 1:
+            r = l + 1
+            while r < N + 1:
+                if (prefs[r] - prefs[l]) % k == 0:
+                    print(l, r)
                     return True
-
-            else:
-                cache[mod] = i
+                r += 1
+            l += 1
 
         return False
+
+        
