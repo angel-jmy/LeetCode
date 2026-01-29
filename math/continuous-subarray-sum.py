@@ -12,7 +12,7 @@ class Solution:
             if new_mod in mods:
                 length = len(mods[new_mod])
                 for j in range(length):
-                    if i - mods[new_mod][length - j - 1] >= 2:
+                    if i - mods[new_mod][j] >= 2:
                         return True
 
             mods[new_mod].append(i)
