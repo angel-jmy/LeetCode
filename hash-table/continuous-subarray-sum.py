@@ -6,18 +6,17 @@ class Solution:
         for i in range(1, N + 1):
             prefs[i] = prefs[i - 1] + nums[i - 1]
 
-        print(prefs)
+        mods = defaultdict(list)
+        for i in range(1, N + 1):
+            new_mod = prefs[i] % k
+            if new_mod in mods:
+                length = len(mods[new_mod])
+                for j in range(length):
+                    if i - mods[new_mod][length - j - 1] >= 2:
+                        return True
 
-        l, r = 0, 0
-        while l < N + 1:
-            r = l + 2
-            while r < N + 1:
-                if (prefs[r] - prefs[l]) % k == 0:
-                    print(l, r)
-                    return True
-                r += 1
-            l += 1
+            mods[new_mod].append(i)
 
         return False
+            
 
-        
