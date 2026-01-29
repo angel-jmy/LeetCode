@@ -10,10 +10,8 @@ class Solution:
         for i in range(N + 1):
             new_mod = prefs[i]
             if new_mod in mods:
-                length = len(mods[new_mod])
-                for j in range(length):
-                    if i - mods[new_mod][j] >= 2:
-                        return True
+                if i - mods[new_mod][0] >= 2:
+                    return True
 
             mods[new_mod].append(i)
 
