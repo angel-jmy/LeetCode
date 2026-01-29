@@ -1,19 +1,12 @@
-class Solution(object):
-    def topKFrequent(self, nums, k):
-        """
-        :type nums: List[int]
-        :type k: int
-        :rtype: List[int]
-        """
-        counts = Counter(nums)  # O(n)
-        
-        # Use a min-heap to keep the top k elements
-        heap = []
+class Solution:
+    def topKFrequent(self, nums: List[int], k: int) -> List[int]:
+        counts = Counter(nums)
+        hq = []
+        items = 0
+        for num in counts:
+            heapq.heappush(hq, (counts[num], num))
+            items += 1
+            if items > k:
+                heapq.heappop(hq)
 
-        for num, freq in counts.items():  # O(m)
-            heapq.heappush(heap, (freq, num))  # Push frequency first
-            if len(heap) > k:
-                heapq.heappop(heap)  # Pop the smallest frequency
-
-        # Extract just the numbers from the heap
-        return [num for freq, num in heap]
+        return [item[1] for item in hq]
